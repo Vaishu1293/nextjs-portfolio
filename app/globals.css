@@ -1,8 +1,4 @@
-/* @import "tailwindcss"; */
-/* @import "tailwindcss/base";  */
-/* @import "tailwindcss/components";
-@import "tailwindcss/utilities"; */
-
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -66,25 +62,24 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
-}
 
-@layer base {
-  * {
+  /* * {
     @apply border-border !scroll-smooth;
-  }
+  } 
   body {
     @apply bg-background text-foreground;
-  }
+  } */
   button {
     @apply active:outline-none;
-  }
+  } 
 }
 
+
 @layer utilities {
-  /* ✅ Fix for missing border-border */
-  .border-border {
+  
+   /* .border-border {
     border-color: var(--border, #d1d5db);
-  }
+  } */
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;
   }
@@ -92,7 +87,7 @@
   .black-gradient {
     background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
   }
-}
+}  
 
 @theme {
   /* Custom Colors */
