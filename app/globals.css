@@ -1,22 +1,134 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
+/* @import "tailwindcss/base";  */
+/* @import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
 
-/* Define custom fonts */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border !scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button {
+    @apply active:outline-none;
+  }
+}
+
+@layer utilities {
+  /* ✅ Fix for missing border-border */
+  .border-border {
+    border-color: var(--border, #d1d5db);
+  }
+  .heading {
+    @apply font-bold text-4xl md:text-5xl text-center;
+  }
+
+  .black-gradient {
+    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+  }
+}
+
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-
-  /* ✅ Add custom color variables */
+  /* Custom Colors */
   --color-black-default: #000;
   --color-black-100: #000319;
+  --color-black-200: rgba(17, 25, 40, 0.75);
+  --color-black-300: rgba(255, 255, 255, 0.125);
+  --color-white-default: #fff;
+  --color-white-100: #BEC1DD;
+  --color-white-200: #C1C2D3;
+  --color-blue-100: #E4ECFF;
+  --color-purple: #CBACF9;
+
+  /* HSL-based Variables */
+  --border: hsl(var(--border));
+  --input: hsl(var(--input));
+  --ring: hsl(var(--ring));
+  --background: hsl(var(--background));
+  --foreground: hsl(var(--foreground));
+  --primary: hsl(var(--primary));
+  --primary-foreground: hsl(var(--primary-foreground));
+  --secondary: hsl(var(--secondary));
+  --secondary-foreground: hsl(var(--secondary-foreground));
+  --destructive: hsl(var(--destructive));
+  --destructive-foreground: hsl(var(--destructive-foreground));
+  --muted: hsl(var(--muted));
+  --muted-foreground: hsl(var(--muted-foreground));
+  --accent: hsl(var(--accent));
+  --accent-foreground: hsl(var(--accent-foreground));
+  --popover: hsl(var(--popover));
+  --popover-foreground: hsl(var(--popover-foreground));
+  --card: hsl(var(--card));
+  --card-foreground: hsl(var(--card-foreground));
 }
 
-/* Default light mode colors */
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-/* Dark mode colors */
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -24,18 +136,62 @@
   }
 }
 
-/* Apply colors globally */
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Utility Classes */
+.bg-black-100 { background-color: var(--color-black-100); }
+.bg-black-default { background-color: var(--color-black-default); }
+.bg-white-100 { background-color: var(--color-white-100); }
+.bg-white-default { background-color: var(--color-white-default); }
+.bg-blue-100 { background-color: var(--color-blue-100); }
+.bg-purple { background-color: var(--color-purple); }
+
+/* Border Radius */
+.radius-lg { border-radius: var(--radius); }
+.radius-md { border-radius: calc(var(--radius) - 2px); }
+.radius-sm { border-radius: calc(var(--radius) - 4px); }
+
+/* Animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
 }
 
-/* ✅ Define Tailwind-like utility classes manually */
-.bg-black-100 {
-  background-color: var(--color-black-100);
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
 }
 
-.bg-black-default {
-  background-color: var(--color-black-default);
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
 }
+
+@keyframes shimmer {
+  from { background-position: 0 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(50%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Animation Utilities */
+.animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+.animate-accordion-up { animation: accordion-up 0.2s ease-out; }
+.animate-spotlight { animation: spotlight 2s ease .75s 1 forwards; }
+.animate-shimmer { animation: shimmer 2s linear infinite; }
+.animate-move-horizontal { animation: moveHorizontal 40s ease infinite; }
+.animate-move-vertical { animation: moveVertical 30s ease infinite; }
